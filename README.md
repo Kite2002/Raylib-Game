@@ -38,11 +38,11 @@ cmake --build . --config Debug
 
 ### 3. Controls
 
-| Key | Action |
-|-----|--------|
-| **W** | Move Up |
-| **A** | Move Left |
-| **S** | Move Down |
+| Key   | Action     |
+| ----- | ---------- |
+| **W** | Move Up    |
+| **A** | Move Left  |
+| **S** | Move Down  |
 | **D** | Move Right |
 
 ## 📁 Project Structure
@@ -72,7 +72,7 @@ Movement is calculated using **delta time** to ensure consistent gameplay speed 
 
 ```cpp
 float deltaTime = GetFrameTime();
-if (IsKeyDown(KEY_A)) { 
+if (IsKeyDown(KEY_A)) {
     gameData.posX -= 200.f * deltaTime;  // 200 pixels/second
 }
 ```
@@ -85,13 +85,14 @@ if (IsKeyDown(KEY_A)) {
 
 **initGame()** - Initialize game state  
 **updateGame()** - Called every frame; handles input and rendering  
-**closeGame()** - Cleanup and shutdown  
+**closeGame()** - Cleanup and shutdown
 
 ## 🔧 Customization
 
 ### Change Player Speed
 
 Edit [src/gamelayer/gameMain.cpp](src/gamelayer/gameMain.cpp#L25):
+
 ```cpp
 200.f * deltaTime  // Change 200 to any speed you want
 ```
@@ -124,6 +125,7 @@ c.a = 255;  // Alpha (0-255)
 ## 🐛 Debugging
 
 - **Enable Debug Build:**
+
   ```bash
   cmake --build . --config Debug
   ```
@@ -133,11 +135,11 @@ c.a = 255;  // Alpha (0-255)
 
 ## 📦 Dependencies
 
-| Library | Purpose | Version |
-|---------|---------|---------|
-| Raylib | 2D/3D Graphics | 6.0 |
-| ImGui | UI Toolkit | Latest (docking) |
-| CMake | Build System | 3.15+ |
+| Library | Purpose        | Version          |
+| ------- | -------------- | ---------------- |
+| Raylib  | 2D/3D Graphics | 6.0              |
+| ImGui   | UI Toolkit     | Latest (docking) |
+| CMake   | Build System   | 3.15+            |
 
 ## 🎨 Next Steps
 
@@ -158,4 +160,3 @@ This template is open for educational and commercial use.
 ---
 
 **Happy Game Developing!** 🎮✨
-
