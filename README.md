@@ -1,4 +1,4 @@
-# 🎮 MyGame - Raylib Game Dev Template
+# 🎮 Raylib Game Dev Template
 
 A lightweight C++ game development template built with **Raylib** and **ImGui**, designed for rapid prototyping and learning game development fundamentals.
 
