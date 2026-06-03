@@ -4,12 +4,17 @@
 #include <imgui.h>
 #include <rlImGui.h>
 
+#include <gameMain.h>
+
 int main() {
-	std::cout << "Hello\n";
-
-	SetTargetFPS(60);
-
+	#if PRODUCTION_BUILD == 1
+	SetTraceLogLevel(LOG_NONE); // no log output to the console by raylib
+	#endif
+	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 	InitWindow(800, 450, "game");
+	SetTargetFPS(240);
+	SetExitKey(KEY_NULL); // Disable Esc from closing window
+
 	#pragma region imgui
 	rlImGuiSetup(true);
 	ImGuiIO& io = ImGui::GetIO();
@@ -17,9 +22,10 @@ int main() {
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 	#pragma endregion
 
-	int posX = 30;
-	int posY = 30;
-	int size = 100;
+
+	if (!initGame()) {
+		return 0;
+	}
 
 	while (!WindowShouldClose()) {
 		BeginDrawing();
@@ -82,18 +88,19 @@ int main() {
 			ImGui::EndTooltip();
 		}
 
-		DrawText("Window", 190, 200, 20, { 255, 0, 0, 127 });
-		DrawRectangle(75, 75, 100, 100, { 255, 0, 0, 127 });
-		DrawRectangle(50, 50, 100, 100, { 0, 255, 0, 127 });
 
-		rlImGuiEnd();
 		#pragma endregion
 
+		if (!updateGame()) {
+			CloseWindow();
+		}
+
+		rlImGuiEnd();
 		EndDrawing();
 	}
 
 	rlImGuiShutdown();
 	CloseWindow();
-
+	closeGame();
 	return 0;
 }
